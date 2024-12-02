@@ -27,7 +27,8 @@
     <!-- Main Content Section -->
     <main class="content">
         <h2>Log In</h2>
-        <form action="#" method="POST" class="login-form">
+        <form action="{% url 'Home' %}" method="GET" class="login-form">
+        
             {% csrf_token %}
             {{ form.as_p }}
             <div class="form-group">
@@ -40,9 +41,7 @@
             <div class="form-group">
                 <input type="submit" value="Log In" class="btn">
             </div>
-            <div class="form-group">
-                <input type="button" value="Sign In" class="btn-secondary">
-            </div>
+            
             <p class="social-login">Log in with:</p>
             <div class="social-icons">
                 <img src="path/to/facebook-icon.png" alt="Facebook" width="50" height="33">
