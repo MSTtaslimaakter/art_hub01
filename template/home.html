@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Artist Showcase Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home.css' %}"> <!-- Link to existing CSS -->
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Showcase Hub</h1>
+            <nav class="main-nav">
+                <ul>
+
+                    <li><a href="{% url 'Home' %}" class="active">Home</a></li>
+                    <li><a href="{% url 'About' %}">About Us</a></li>
+                    <li><a href="{% url 'artist_profile' %}">Artists</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'Sign_in' %}">Sign In</a></li>
+                    <li><a href="{% url 'Log_in' %}">Log In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="content">
+        <section class="hero">
+            <div class="hero-heading">
+                <h2>Welcome to the Artist Showcase Hub</h2>
+                <h3>An Open Art Gallery to Connect Local Artists</h3>
+            </div>
+            <div class="hero-content">
+                <p>
+                    The Artist Showcase Hub is a vibrant community where local artists can connect with art lovers,
+                    showcase their talent, and sell their creations. Our platform offers a wide variety of artworks
+                    that celebrate the creativity and skill of local talent. Whether you're an artist or an art enthusiast,
+                    this is the place for you!
+                </p>
+                <button class="cta-button"><a href="{% url 'artist_profile' %}">Explore Artists</a></button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+            <p>Follow us on social media!</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/">Facebook</a> | 
+                <a href="https://twitter.com/?lang=en">Twitter</a> | 
+                <a href="https://www.instagram.com/">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

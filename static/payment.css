@@ -1,0 +1,267 @@
+
+** {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F4C2C2; /* Baby Pink Background Color */
+  color: #994005;
+}
+
+/* Header Styles */
+.site-header {
+  background-color: #e4935d;
+  color: white;
+  padding: 20px 0;
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.site-title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.main-nav ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.main-nav li {
+  margin-left: 20px;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 16px;
+}
+
+.main-nav a:hover {
+  background-color: #db914c;
+  border-radius: 5px;
+}
+
+/* Main Content */
+.content {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.content h2 {
+  color: #e07a1b;
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.content p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* New Payment Details Container */
+.payment-details-container {
+  background-color: #e4b29b; /* Base color for Payment Details */
+  padding: 40px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.payment-details-container h3 {
+  color: #e4935d;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.payment-details-container p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Payment Form Styling */
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.payment-form .form-group {
+  margin-bottom: 20px;
+}
+
+.payment-form .form-group label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.payment-form .form-group input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.payment-form .checkbox-group {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.payment-form .checkbox-group input {
+  margin-right: 10px;
+}
+
+.payment-form .btn, .payment-form .btn-secondary {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.payment-form .btn {
+  background-color: #e4935d;
+  color: white;
+}
+
+.payment-form .btn-secondary {
+  background-color: #FF6A00;
+  color: white;
+}
+
+.payment-form .btn:hover, .payment-form .btn-secondary:hover {
+  opacity: 0.9;
+}
+
+.payment-form .btn:focus, .payment-form .btn-secondary:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(227, 147, 93, 0.5);
+}
+
+/* Footer Styles */
+.site-footer {
+  background-color: #e97d35;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.site-footer .social-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.site-footer .social-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .site-header .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    padding-left: 0;
+  }
+
+  .main-nav li {
+    margin-bottom: 10px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .payment-details-container {
+    padding: 20px;
+  }
+
+  .payment-form {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  .payment-form .btn, .payment-form .btn-secondary {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-title {
+    font-size: 28px;
+  }
+
+  .main-nav a {
+    font-size: 16px;
+  }
+
+  .content h2 {
+    font-size: 28px;
+  }
+
+  .payment-details-container h3 {
+    font-size: 24px;
+  }
+
+  .payment-form .form-group input {
+    font-size: 14px;
+  }
+
+  .payment-form .btn, .payment-form .btn-secondary {
+    font-size: 16px;
+  }
+}
+
+  .payment-form .form-group input {
+    font-size: 14px;
+  }
+
+  .payment-form .btn, .payment-form .btn-secondary {
+    font-size: 16px;
+  }
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Illustration - Artist's Showcase Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'gallery.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Showcase Hub</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'Home' %}">Home</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'Log_in' %}">Log-in</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Delete Illustration Section -->
+    <main class="content">
+        <div class="container">
+            <h2>Delete Illustration: {{ illustration.title }}</h2>
+            <p>Are you sure you want to delete the illustration "<strong>{{ illustration.title }}</strong>" by {{ illustration.artist }}?</p>
+            
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" style="background-color: red; color: white;">Yes, Delete</button>
+                <a href="{% url 'illustrations' %}"><button type="button">Cancel</button></a>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

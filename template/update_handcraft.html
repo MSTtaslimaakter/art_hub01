@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Handcraft</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'gallery.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Showcase Hub</h1>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <h2>Update Handcraft</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Update Handcraft</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

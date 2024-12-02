@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist's Showcase Hub - Paintings</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'gallery.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Showcase Hub</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'Home' %}">Home</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'Log_in' %}">Log-in</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Category Section -->
+    <main class="content">
+        <div class="container">
+            <h2>Paintings</h2>
+            <p>Explore the beautiful collection of paintings created by talented artists.</p>
+
+            <!-- Button to upload new painting -->
+            <div>
+                <a href="{% url 'create_painting' %}" class="btn btn-success upload-btn">
+                    <i class="fas fa-upload"></i> Upload New Painting
+                </a>
+            </div>
+
+            <div class="image-gallery">
+                {% for painting in paintings %}
+                    <div class="image-item">
+                        <img src="{{ painting.image.url }}" alt="{{ painting.title }}">
+                        <h4>{{ painting.title }}</h4>
+                        <p>By: {{ painting.artist }}</p>
+                        <div class="painting-actions">
+                            <!-- Edit Button -->
+                            <a href="{% url 'update_painting' painting.id %}" 
+                               class="btn btn-warning action-btn">
+                               <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <!-- Delete Button -->
+                            <a href="{% url 'delete_painting' painting.id %}" 
+                               class="btn btn-danger action-btn" 
+                               onclick="return confirm('Are you sure you want to delete this painting?')">
+                               <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                            <!-- Purchase Button -->
+                            <a href="{% url 'payment' %}" 
+                               class="btn btn-primary action-btn">
+                               <i class="fas fa-shopping-cart"></i> Purchase
+                            </a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No paintings available at the moment.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

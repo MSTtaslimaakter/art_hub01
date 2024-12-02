@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist's Showcase Hub - Illustrations</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'gallery.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Showcase Hub</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'Home' %}">Home</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'Log_in' %}">Log-in</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Category Section -->
+    <main class="content">
+        <div class="container">
+            <h2>Illustrations</h2>
+            <p>Explore unique and creative illustrations from various artists.</p>
+
+            <!-- Button to upload new illustration -->
+            <div class="upload-button">
+                <a href="{% url 'create_illustration' %}" class="btn btn-success">
+                    <i class="fas fa-upload"></i> Upload New Illustration
+                </a>
+            </div>
+
+            <div class="image-gallery">
+                {% for illustration in illustrations %}
+                    <div class="image-item">
+                        <img src="{{ illustration.image.url }}" alt="{{ illustration.title }}">
+                        <h4>{{ illustration.title }}</h4>
+                        <p>By: {{ illustration.artist }}</p>
+            
+                        <!-- Edit, Delete, and Purchase Buttons -->
+                        <div class="actions">
+                            <!-- Edit Button -->
+                            <a href="{% url 'update_illustration' illustration.id %}" class="btn btn-warning">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            
+                            <!-- Delete Button -->
+                            <a href="{% url 'delete_illustration' illustration.id %}" class="btn btn-danger" 
+                               onclick="return confirm('Are you sure you want to delete this illustration?')">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                            
+                            <!-- Purchase Button -->
+                            <a href="{% url 'payment' %}" class="btn btn-primary">
+                                <i class="fas fa-shopping-cart"></i> Purchase
+                            </a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No illustrations available at the moment.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+            <p>Follow us on social media for updates!</p>
+        </div>
+    </footer>
+</body>
+</html>

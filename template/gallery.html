@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist's Showcase Hub - Gallery</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'gallery.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Showcase Hub</h1>
+            <nav class="main-nav">
+                <ul> 
+                    <li><a href="{% url 'Home' %}">Home</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'Log_in' %}">Log In</a></li>
+                    <li><a href="{% url 'gallery' %}" class="active">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Gallery Section -->
+    <main class="gallery-section">
+        <div class="container">
+            <h2>Gallery</h2>
+            <div class="gallery-container">
+                <!-- Gallery Categories -->
+                <div class="gallery-info">
+                    <div class="info-box">
+                        <div class="info-item">
+                            <button class="category-btn"><a href="{% url 'paintings' %}" class="category-btn">Paintings</a></button>
+                        </div>
+                        <div class="info-item">
+                            <button class="category-btn"><a href="{% url 'illustrations' %}" class="category-btn">Illustrations</a></button>
+                        </div>
+                        <div class="info-item">
+                            <button class="category-btn"><a href="{% url 'handcrafts' %}" class="category-btn">Hand Crafts</a></button>
+                        </div>
+                        <div class="info-item">
+                            <button class="category-btn"><a href="{% url 'photography' %}" class="category-btn">Photography</a></button>
+                        </div>
+                        <div class="info-item">
+                            <button class="category-btn"> <a href="{% url 'abstractart' %}" class="category-btn">Abstract Art</a></button>
+                        </div>
+                    </div>
+
+                    <!-- Button to Go Back -->
+                    <div class="gallery-form">
+                        <a href="{% url 'Home' %}" class="back-button">
+                            <input type="button" value="Back">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+            <p>Follow us on social media for updates!</p>
+        </div>
+    </footer>
+</body>
+</html>

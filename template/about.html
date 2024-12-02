@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Artist Showcase Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'about.css' %}"> <!-- Link to existing CSS file -->
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Showcase Hub</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'Home' %}" class="active">Home</a></li>
+                    <li><a href="{% url 'About' %}">About Us</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    <li><a href="{% url 'artist_profile' %}">Artists</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-heading">
+                <h1>About Us</h1>
+            </div>
+            <div class="hero-content">
+                <p>The purpose of creating a website where local artists can connect with art lovers to showcase and sell their artwork is to provide a dedicated platform that supports and promotes local artistic talent. By prioritizing local artists, the website aims to foster a sense of community and appreciation for the unique perspectives and styles emerging from the local area. Additionally, featuring international artists will enrich the platform, offering diverse artistic expressions and broadening the horizons of art lovers. This inclusive approach not only helps local artists gain visibility and financial support but also cultivates a vibrant, interconnected global art community. Ultimately, the website serves as a bridge between artists and art enthusiasts, celebrating creativity and facilitating meaningful exchanges.</p>
+                <a href="https://en.wikipedia.org/wiki/The_arts"><button class="cta-button">Learn More</button></a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+            <p>Follow us on social media!</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/">Facebook</a> | 
+                <a href="https://twitter.com/?lang=en">Twitter</a> | 
+                <a href="https://www.instagram.com/">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

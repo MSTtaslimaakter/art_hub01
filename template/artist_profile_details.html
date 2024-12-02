@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ artist.name }} - Artist's Showcase Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'artist_profile_details.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Showcase Hub</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'Home' %}">Home</a></li>
+                    <li><a href="{% url 'About' %}">About</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    <li><a href="{% url 'artist_profile' %}">Artists</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Artist Profile Details Section -->
+    <main class="content">
+        <div class="container">
+            <h2>{{ artist.name }}</h2>
+            <img src="{{ artist.profile_picture.url }}" alt="{{ artist.name }}" width="250" height="350">
+            <p><strong>Bio:</strong> {{ artist.bio }}</p>
+            <p><strong>Email:</strong> {{ artist.email }}</p>
+            <p><strong>Phone Number:</strong> {{ artist.phone_number }}</p>
+            <p><strong>Location:</strong> {{ artist.location }}</p>
+
+            {% if artist.social_links %}
+                <p><strong>Social Links:</strong></p>
+                <ul>
+                    {% for key, value in artist.social_links.items %}
+                        <li><a href="{{ value }}">{{ key }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

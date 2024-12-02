@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Completed - Artist's Showcase Hub</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'purchase.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Purchase Completed</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'Home' %}">Home</a></li>
+                    <li><a href="{% url 'Sign_in' %}">Sign In</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    <li><a href="{% url 'artist_profile' %}">Artists</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="content">
+        <div class="completion-message">
+            <h2>Congratulations!</h2>
+            <p>Your purchase has been successfully completed.</p>
+            <p>Thank you for supporting our artists! You will receive an email confirmation shortly.</p><br>
+            <div class="completion-actions">
+                <button><a href="{% url 'Gallery' %}">Return To Gallery</a></button>
+                <button><a href="{% url 'Home' %}" class="active">Home</a></button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+            <p>Follow us on social media!</p>
+            <div class="social-links">
+                <a href="#">Facebook</a> | 
+                <a href="#">Twitter</a> | 
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

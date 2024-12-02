@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist's Showcase Hub - Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Showcase Hub</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'Home' %}">Home</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'Log_in' %}">Log-in</a></li>
+                    <li><a href="{% url 'Profile' %}" class="active">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <main class="profile-section">
+        <div class="container">
+            <h2>User Profile</h2>
+
+            <div class="profile-container">
+                <!-- Profile Picture Section -->
+                <div class="profile-picture">
+                    <img src="/home/hp/Downloads/fea54869efe6caca51ed2b052c982545.jpg" alt="User's Profile Picture" width="150" height="200"/>
+                    <p>@jennie_kim</p>
+                </div>
+
+                <!-- Profile Information Section -->
+                <div class="profile-info">
+                    <div class="info-box">
+                        <div class="info-item">
+                            <strong>Name:</strong>
+                            <p>Kim Jennie</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Date of Birth:</strong>
+                            <p>January 1, 1990</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Email:</strong>
+                            <p>jennie.kim@example.com</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Contact Info:</strong>
+                            <p>+1234567890</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Gender:</strong>
+                            <p>Female</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+            <p>Follow us on social media for updates!</p>
+        </div>
+    </footer>
+</body>
+</html>

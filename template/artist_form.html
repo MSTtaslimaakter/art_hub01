@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if artist %}Update{% else %}Create{% endif %} Artist - Artist's Showcase Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'artist_profile.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">{% if artist %}Update{% else %}Create{% endif %} Artist</h1>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <h2>{% if artist %}Update{% else %}Create{% endif %} Artist Profile</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">{% if artist %}Update{% else %}Create{% endif %}</button>
+            </form>
+            <a href="{% url 'artist_profile' %}">Back to artist list</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

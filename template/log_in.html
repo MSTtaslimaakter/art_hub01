@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - Artist's Showcase Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'log_in.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Showcase Hub</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'Home' %}">Home</a></li>
+                    <li><a href="{% url 'About' %}">About</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    <li><a href="{% url 'artist_profile' %}">Artists</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="content">
+        <h2>Log In</h2>
+        <form action="#" method="POST" class="login-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Id/Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+                <p class="forgot-password"><a href="#">Forget password?</a></p>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Log In" class="btn">
+            </div>
+            <div class="form-group">
+                <input type="button" value="Sign In" class="btn-secondary">
+            </div>
+            <p class="social-login">Log in with:</p>
+            <div class="social-icons">
+                <img src="path/to/facebook-icon.png" alt="Facebook" width="50" height="33">
+                <img src="path/to/instagram-icon.png" alt="Instagram" width="50" height="33">
+                <img src="path/to/google-icon.png" alt="Google" width="50" height="33">
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+            <p>Follow us on social media!</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/">Facebook</a> | 
+                <a href="https://twitter.com/?lang=en">Twitter</a> | 
+                <a href="https://www.instagram.com/">Instagram</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist's Profile - Artist's Showcase Hub</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'artist_profile.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">Artist's Profile</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'Home' %}">Home</a></li>
+                    <li><a href="{% url 'About' %}">About</a></li>
+                    <li><a href="{% url 'event' %}">Events</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    <li><a href="{% url 'artist_profile' %}">Artists</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Button to upload a new artist -->
+    <div class="container">
+        <a href="{% url 'create_artist' %}" class="upload-btn">Upload Artist</a>
+    </div>
+
+    <!-- Artist Gallery Section -->
+    <main class="content">
+        <section class="artist-gallery">
+            <div class="gallery">
+                {% for artist in artists %}
+                <div class="gallery-item">
+                    <h3>{{ artist.name }}</h3>
+                    <img src="{{ artist.profile_picture.url }}" width="150" height="200" alt="Picture of {{ artist.name }}">
+                    <div class="card-footer p-4 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <!-- Link to artist details page -->
+                            <a class="btn btn-info mt-auto" 
+                               href="{% url 'artist_profile_details' artist.artist_id %}" 
+                               title="View artist details">
+                               <i class="fas fa-info-circle"></i> Details
+                            </a>
+                            
+                            <!-- Link to edit artist details -->
+                            <a class="btn btn-warning mt-auto" 
+                               href="{% url 'update_artist' artist.artist_id %}" 
+                               title="Edit artist information">
+                               <i class="fas fa-edit"></i> Edit
+                            </a>
+                            
+                            <!-- Link to delete artist with confirmation -->
+                            <a class="btn btn-danger mt-auto" 
+                               href="{% url 'delete_artist' artist.artist_id %}" 
+                               onclick="return confirm('Are you sure you want to delete this artist?')"
+                               title="Delete artist">
+                               <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Artist's Showcase Hub. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
