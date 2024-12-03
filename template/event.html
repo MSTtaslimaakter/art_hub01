@@ -43,7 +43,21 @@
             
             {% for event in events %}
             <div class="event-pic">
-                <img src="{{ event.image.url }}" alt="Event Image" width="300" height="350">
+                {% if event.image %}
+          <img
+            src="{{ event.image.url }}"
+            alt="Event Image"
+            width="300"
+            height="350"
+          />
+          {% else %}
+          <img
+            src="{% static 'media/default-event.png' %}"
+            alt="Default Event Image"
+            width="300"
+            height="350"
+          />
+          {% endif %}
             </div>
             <section class="event-details">
                 <h4>Event Details</h4>
