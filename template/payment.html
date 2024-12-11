@@ -58,20 +58,20 @@
             <form action="{% url 'purchase' %}" method="POST" class="payment-form">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="name">Cardholder's Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Enter cardholder's name" required>
+                    <label for="name">Card Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter card name" required>
                 </div>
                 <div class="form-group">
                     <label for="my">Expiration Date (MM/YY):</label>
-                    <input type="text" id="my" name="my" placeholder="MM/YY" required>
+                    <input type="number" id="my" name="my" placeholder="MM/YY" required>
                 </div>
                 <div class="form-group">
                     <label for="cvc">CVC/CVV:</label>
-                    <input type="text" id="cvc" name="cvc" placeholder="Enter CVC" required>
+                    <input type="number" id="cvc" name="cvc" placeholder="Enter CVC" required>
                 </div>
                 <div class="form-group">
-                    <label for="hname">Cardholder's Name:</label>
-                    <input type="text" id="hname" name="hname" placeholder="Enter cardholder's name" required>
+                    <label for="hname">Card holder's Name:</label>
+                    <input type="text" id="hname" name="hname" placeholder="Enter card holder's name" required>
                 </div>
                 <div class="form-group checkbox-group">
                     <input type="checkbox" id="ps" name="ps" class="checkbox-input" aria-label="Save card and remember me">
@@ -80,7 +80,7 @@
                 
                 <div class="form-group">
                     <!-- 'Pay Now' button with submission action -->
-                    <button type="submit" class="pay-now-button"><strong>Pay Now</strong></button>
+                    <button type="submit" class="pay-now-button"><a href="{% url 'payment' %}"><strong>Pay Now</strong></a></button>
                 </div>
                 <div class="form-group">
                     <input type="button" value="Back" class="btn-secondary" onclick="window.history.back();">
