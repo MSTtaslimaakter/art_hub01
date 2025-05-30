@@ -61,6 +61,8 @@ urlpatterns = [
     path('update_photography/<int:id>/', views.update_photography, name='update_photography'),
     path('delete_photography/<int:id>/', views.delete_photography, name='delete_photography'),
     path('accounts/', include('accounts.urls')),
+    path('add_comment/<int:painting_id>/', views.add_comment, name='add_comment'),  # URL for adding a comment
+
     
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

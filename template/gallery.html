@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artist's Showcase Hub - Gallery</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'gallery.css' %}">
+    <link rel="stylesheet" href="{% static 'Gallery.css' %}">
 </head>
 <body>
     <!-- Header Section -->
@@ -14,10 +14,12 @@
             <h1 class="site-title">Artist's Showcase Hub</h1>
             <nav class="main-nav">
                 <ul> 
-                    <li><a href="{% url 'Home' %}">Home</a></li>
                     <li><a href="{% url 'event' %}">Events</a></li>
-                    <li><a href="{%url 'Log_in' %}">Log Out</a></li>
+                    <li><a href="{% url 'About' %}">About</a></li>
+
                     <li><a href="{% url 'gallery' %}" class="active">Gallery</a></li>
+                    <li><a href="{% url 'Home' %}">Log-Out</a></li>
+
                 </ul>
             </nav>
         </div>

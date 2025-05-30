@@ -122,3 +122,8 @@ class Photography(models.Model):
 
     def __str__(self):
         return f"{self.title} by {self.artist}" 
+    
+class Comment(models.Model):
+    painting = models.ForeignKey(Painting, related_name='comments', on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)

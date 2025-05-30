@@ -4,6 +4,10 @@ from django.shortcuts import render, get_object_or_404,redirect
 from django.http import HttpResponse
 from .forms import *
 from .models import *
+from django.contrib.auth import authenticate, login  # Import the login function
+from .models import Painting, Comment
+from .forms import CommentForm  
+
 def Home (request):
     return render (request,'home.html')
 
@@ -317,3 +321,24 @@ def delete_photography(request, id):
         return redirect('photography')  # Redirect back to the photography gallery page
     return render(request, 'delete_photography.html', {'photo': photo})
 
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('Profile')  # Redirect to the profile page after successful login
+    return render(request, 'login.html')  # Return the login page if not POST
+
+def profile_view(request):
+    return render(request, 'profile.html')  # Render the profile page
+def add_comment(request, painting_id):
+    painting = Painting.objects.get(id=painting_id)  # Get the painting
+    if request.method == 'POST':
+        comment_text = request.POST.get('comment')
+        if comment_text:
+            # Save the comment to the database
+            Comment.objects.create(painting=painting, text=comment_text)
+        return redirect('paintings')  # Redirect back to the paintings page
+    return redirect('paintings')  # Redirect back if the method is not POST

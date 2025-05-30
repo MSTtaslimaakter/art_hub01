@@ -16,10 +16,11 @@
             <h1 class="site-title">Artist's Showcase Hub</h1>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="{% url 'Home' %}">Home</a></li>
                     <li><a href="{% url 'event' %}">Events</a></li>
                     <li><a href="{% url 'artist_profile' %}">Artists</a></li>
                     <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    <li><a href="{% url 'Home' %}">Log-Out</a></li>
+
                 </ul>
             </nav>
         </div>
@@ -37,38 +38,31 @@
             <p>Number of events: {{ events.count }}</p>
             
             {% for event in events %}
-            <div class="event-pic">
-                {% if event.image %}
-          <img
-            src="{{ event.image.url }}"
-            alt="Event Image"
-            width="300"
-            height="350"
-          />
-          {% else %}
-          <img
-            src="{% static 'media/default-event.png' %}"
-            alt="Default Event Image"
-            width="300"
-            height="350"
-          />
-          {% endif %}
+            <div class="event-container">
+                <div class="event-pic">
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}" alt="Event Image" width="300" height="350" />
+                    {% else %}
+                        <img src="{% static 'media/default-event.png' %}" alt="Default Event Image" width="300" height="350" />
+                    {% endif %}
+                </div>
+                <div class="event-info">
+                    <section class="event-details">
+                        <h4>Event Details</h4>
+                        <p><strong>Date:</strong> {{ event.date_start }} - {{ event.date_end }}</p>
+                        <p><strong>Time:</strong> {{ event.time }}</p>
+                        <p><strong>Venue:</strong> {{ event.venue }}</p>
+                        <p><strong>Entry Fee:</strong> ${{ event.entry_fee }}</p>
+                    </section>
+            
+                    <section class="description">
+                        <h4>Description</h4>
+                        <p><strong>{{ event.description }}</strong></p>
+                    </section>
+                </div>
             </div>
-            <section class="event-details">
-                <h4>Event Details</h4>
-                <p><strong>Date:</strong> {{ event.date_start }} - {{ event.date_end }}</p>
-                <p><strong>Time:</strong> {{ event.time }}</p>
-                <p><strong>Venue:</strong> {{ event.venue }}</p>
-                <p><strong>Entry Fee:</strong> ${{ event.entry_fee }}</p>
-            </section>
-
-            <section class="description">
-                <h4>Description</h4>
-                <p><strong>{{ event.description }}</strong></p>
-            </section>
-
-
             {% endfor %}
+            
         </section>
     </main>
 

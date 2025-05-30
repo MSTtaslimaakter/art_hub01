@@ -2,7 +2,7 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
-  color: #fc833d;
+  color: #ff975b;
   margin: 0;
   padding: 0;
 }
@@ -14,7 +14,7 @@ body {
 }
 
 .site-header {
-  background-color: #e96937;
+  background-color: #fdad61;
   color: #fff;
   padding: 10px 0;
 }
@@ -100,7 +100,7 @@ body {
 .social-links a {
   margin: 0 15px;
   font-size: 1.5em;
-  color: #9bb9fa;
+  color: #fcaf68;
   text-decoration: none;
 }
 

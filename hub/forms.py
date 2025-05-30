@@ -1,5 +1,9 @@
 from django.forms import ModelForm
 from .models import *
+from .models import Comment
+from django import forms
+
+
 
 class ArtistForm(ModelForm):
     class Meta:
@@ -35,3 +39,7 @@ class PhotographyForm(ModelForm):
     class Meta:
         model = Photography
         fields = '__all__'      
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']
