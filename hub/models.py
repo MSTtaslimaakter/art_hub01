@@ -1,6 +1,27 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.utils import timezone
+
+
+
+
+class WorkshopRegistration(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+class FestivalTicket(models.Model):
+    name = models.CharField(max_length=100)
+    tickets = models.PositiveIntegerField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.tickets} tickets"
+
 
 class Event_s(models.Model):
     title = models.CharField(max_length=200, default="Untitled Event")
@@ -68,15 +89,6 @@ class ArtPieceCategory(models.Model):
     def __str__(self):
         return f"{self.art_piece.title} - {self.category.name}"
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True, null=True)
-    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
-    location = models.CharField(max_length=100, blank=True, null=True)
-    website = models.URLField(blank=True, null=True)
-
-    def __str__(self):
-        return self.user.username
     
 class Painting(models.Model):
     title = models.CharField(max_length=100)
@@ -104,15 +116,7 @@ class AbstractArt(models.Model):
 
     def __str__(self):
         return f"{self.title} by {self.artist}"   
-    
-class Handcraft(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='handcrafts/')
-    description = models.TextField()
-    artist = models.CharField(max_length=100)
 
-    def __str__(self):
-        return f"{self.title} by {self.artist}"   
     
 class Photography(models.Model):
     title = models.CharField(max_length=100)
@@ -122,8 +126,72 @@ class Photography(models.Model):
 
     def __str__(self):
         return f"{self.title} by {self.artist}" 
-    
-class Comment(models.Model):
-    painting = models.ForeignKey(Painting, related_name='comments', on_delete=models.CASCADE)
+class Artwork(models.Model):
+    CATEGORY_CHOICES = [
+        ('abstract', 'Abstract'),
+        ('painting', 'Painting'),
+    ]
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='artworks/', blank=True, null=True)
+    artist = models.CharField(max_length=100, null=True, blank=True)
+    description = models.TextField()
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='painting')
+
+
+
+
+class Handcraft(models.Model):
+    title = models.CharField(max_length=200)
+    artist = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='handcraft_images/')
+    description = models.TextField(blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    # Add other fields as necessary
+
+    def __str__(self):
+        return self.title
+
+class HandcraftComment(models.Model):
+    handcraft = models.ForeignKey(Handcraft, related_name='comments', on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+# models.py
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True)
+    university = models.CharField(max_length=100, blank=True)
+    school = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=50, blank=True)
+    profile_pic = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    # Optional: many-to-many with User for favorites
+    favorite_artists = models.ManyToManyField('self', symmetrical=False, related_name='fans', blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+# ✅ Artwork Model
+class Artwork(models.Model):
+    artist = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default=1)
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='artworks/')
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.title} by {self.artist.username}"
+
+# ✅ Event Model
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    date = models.DateField()
+    location = models.CharField(max_length=200)
+    banner = models.ImageField(upload_to='event_banners/', blank=True, null=True)
+
+    participants = models.ManyToManyField(settings.AUTH_USER_MODEL)
+
+
+    def __str__(self):
+        return self.title
+

@@ -1,66 +1,125 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In - Artist's Showcase Hub</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'log_in.css' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In - Artists Showcase Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f8fafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .container h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #334155;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .form-group input:focus {
+      border-color: #2563eb;
+      outline: none;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #1d4ed8;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .submit-btn:hover {
+      background-color: #1e40af;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .footer a {
+      color: #1d4ed8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Header Section -->
-    <header class="site-header">
-        <div class="container">
-            <h1 class="site-title">Artist's Showcase Hub</h1>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="{% url 'Home' %}">Home</a></li>
-                    <li><a href="{% url 'About' %}">About</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <div class="container">
+    <h2>Log In</h2>
+    <form action="/log_in/" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Username or Email</label>
+        <input type="text" id="username" name="username" required />
+      </div>
 
-    <!-- Main Content Section -->
-    <main class="content">
-        <h2>Log In</h2>
-        <form action="{% url 'Log_in' %}" method="POST" class="login-form">
-            {% csrf_token %}
-            <div class="form-group">
-                <input type="text" name="username" placeholder="Id/Username" required>
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" placeholder="Password" required>
-                <p class="forgot-password"><a href="#">Forgot Password?</a></p>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Log In" class="btn">
-            </div>
-            
-            <p class="social-login">Log in with:</p>
-            <div class="social-icons">
-                <a href="https://www.facebook.com" target="_blank">
-                    <img src="https://i.postimg.cc/sDBjBHQ4/fb.jpg" style="width: 50px; height: 50px;">
-                </a>
-                <a href="https://www.google.com" target="_blank">
-                    <img src="https://i.postimg.cc/7YvzZzbh/google.jpg" style="width: 50px; height: 50px;">
-                </a>
-            </div>
-        </form>
-        
-    </main>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+      </div>
 
-    <!-- Footer Section -->
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; Artist's Showcase Hub. All rights reserved.</p>
-            <p>Follow us on social media!</p>
-            <div class="social-links">
-                <a href="https://www.facebook.com/">Facebook</a> | 
-                <a href="https://twitter.com/?lang=en">Twitter</a> | 
-                <a href="https://www.instagram.com/">Instagram</a>
-            </div>
-        </div>
-    </footer>
+      <button type="submit" class="submit-btn">Log In</button>
+    </form>
+
+    <div class="footer">
+      Don’t have an account? <a href="/sign_up/">Sign Up</a>
+    </div>
+  </div>
+  <form action="/log_in/" method="POST">
+
 </body>
 </html>

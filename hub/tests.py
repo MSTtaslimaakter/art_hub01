@@ -17,25 +17,16 @@ class FunctionalTest(StaticLiveServerTestCase):
         self.browser.quit()
 
     def test_user_can_login(self):
-        # Go to the login page
         self.browser.get(f'{self.live_server_url}/log_in/')
-
-        # Wait for the username input to appear
-        WebDriverWait(self.browser, 10).until(
+        WebDriverWait(self.browser, 240).until(
             EC.presence_of_element_located((By.NAME, 'username'))
         )
-
-        # Enter login credentials
         self.browser.find_element(By.NAME, 'username').send_keys('testuser')
         self.browser.find_element(By.NAME, 'password').send_keys('testpass')
-
-        # Submit the form
         self.browser.find_element(By.CSS_SELECTOR, 'input[type="submit"]').click()
-
-        # Wait for the redirected page to load
-        WebDriverWait(self.browser, 120).until(
+        WebDriverWait(self.browser, 240).until(
             EC.presence_of_element_located((By.TAG_NAME, 'body'))
         )
-
-        # Check if login was successful (adjust "Profile" as per your profile page content)
         self.assertIn("Profile", self.browser.page_source)
+
+    

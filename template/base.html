@@ -1,48 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base Page Template</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artists Showcase Hub</title>
+  {% if messages %}
+  {% for message in messages %}
+    <div style="color: red; text-align: center; margin: 10px;">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #fff;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background-color: #fff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+    }
+
+    nav a.signin {
+      padding: 8px 16px;
+      background-color: #1d4ed8;
+      color: #fff;
+      border-radius: 6px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px;
+      gap: 40px;
+    }
+
+    .hero-text {
+      max-width: 50%;
+    }
+
+    .hero-text h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .hero-text a {
+      padding: 12px 20px;
+      background-color: #1d4ed8;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hero img {
+      max-width: 450px;
+      border-radius: 12px;
+    }
+
+    .section {
+      padding: 60px;
+    }
+
+    .section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .feature {
+      flex: 1;
+      text-align: center;
+    }
+
+    .feature i {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .artists {
+      display: flex;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .artist-card {
+      text-align: center;
+    }
+
+    .artist-card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .gallery img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .secure {
+      margin-top: 40px;
+      padding: 20px;
+      border-top: 1px solid #ddd;
+    }
+
+    .secure p {
+      font-size: 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f3f3f3;
+      margin-top: 40px;
+    }
+   
+
+  </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="site-header">
-        <div class="container">
-            <h1 class="site-title">Artist's Showcase Hub</h1>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="artist_profile.html">Artist</a></li>
-                    
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <h1>Artists Showcase Hub</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#events">Events</a>
+      <a href="/gallery/">Gallery</a>
+       <a href="{% url 'sign_up' %}">sign up</a>
+       <a href="{% url 'log_out' %}">Logout</a>
 
-    <!-- Main Content Section -->
-    <main class="content">
-        <!-- Page-specific content will go here -->
-        <h2>Welcome to the Artist's Showcase Hub</h2>
-        <p>This is the base page. You can add specific content here for each page.</p>
-    </main>
+    </nav>
+  </header>
 
-    <!-- Footer Section -->
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; Artist's Showcase Hub. All rights reserved.</p>
-            <p>Follow us on social media!</p>
-            <div class="social-links">
-                <a href="#">Facebook</a> | 
-                <a href="#">Twitter</a> | 
-                <a href="#">Instagram</a>
-            </div>
-        </div>
-    </footer>
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Discover and Connect with Artists</h2>
+      <p>Join our community to explore world of art, connect with talented artists, and stay informed about events.</p>
+      <a href="#get-started">Get Started</a>
+    </div>
+    <img src="https://images.unsplash.com/photo-1611078489935-1ec4e13b4d0d" alt="Woman painting" />
+  </section>
+
+  <section class="section" id="about">
+    <h2>About</h2>
+    <div class="features">
+      <div class="feature">
+        <p>❤️<br><strong>For Art Lovers</strong><br>Create a profile to follow your favorite artists and discover new artwork.</p>
+      </div>
+      <div class="feature">
+        <p>👨‍🎨<br><strong>For Artists</strong><br>Showcase your artwork, build your portfolio, and reach a wider audience.</p>
+      </div>
+      <div class="feature">
+        <p>📅<br><strong>Explore Events</strong><br>Attend art exhibitions, workshops, and other art events.</p>
+      </div>
+    </div>
+
+    <div class="artists">
+      <div class="artist-card">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jane Doe">
+        <p><strong>Jane Doe</strong><br>Member since 2022</p>
+      </div>
+      <div class="artist-card">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Smith">
+        <p><strong>John Smith</strong><br>Contemporary Artist</p>
+      </div>
+      <div class="artist-card">
+        <img src="https://randomuser.me/api/portraits/men/40.jpg" alt="John Smith">
+        <p><strong>John Smith</strong><br>Contemporary Artist</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://source.unsplash.com/150x150/?art1" alt="Art 1">
+      <img src="https://source.unsplash.com/150x150/?art2" alt="Art 2">
+      <img src="https://source.unsplash.com/150x150/?art3" alt="Art 3">
+      <img src="https://source.unsplash.com/150x150/?art4" alt="Art 4">
+      <img src="https://source.unsplash.com/150x150/?art5" alt="Art 5">
+    </div>
+  </section>
+
+  <section class="section secure">
+    <h2>Secure Payments</h2>
+    <p>✔️ Support artists and recharge your heart with confidence through our secure payment system.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Artists Showcase Hub. All rights reserved.
+  </footer>
 </body>
 </html>

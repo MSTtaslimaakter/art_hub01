@@ -1,0 +1,28 @@
+{% elif event_type == 'workshop' %}
+  <h2 class="text-3xl font-bold mb-6">Register for Watercolor Workshop</h2>
+  {% if submitted %}
+    <div class="bg-green-100 text-green-800 px-4 py-3 rounded mb-6">
+      ✅ Registration successful!
+    </div>
+    <a href="{% url 'artist_profile' %}" class="text-blue-600 hover:underline">Back to Profile</a>
+  {% else %}
+    <form method="POST" class="space-y-4 max-w-md">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Submit</button>
+    </form>
+  {% endif %}
+{% elif event_type == 'festival' %}
+  <h2 class="text-3xl font-bold mb-6">Book Tickets for Annual Art Festival</h2>
+  {% if submitted %}
+    <div class="bg-green-100 text-green-800 px-4 py-3 rounded mb-6">
+      🎟️ Ticket successfully booked!
+    </div>
+    <a href="{% url 'artist_profile' %}" class="text-blue-600 hover:underline">Back to Profile</a>
+  {% else %}
+    <form method="POST" class="space-y-4 max-w-md">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Reserve</button>
+    </form>
+  {% endif %}

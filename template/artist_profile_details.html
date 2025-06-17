@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ artist.name }} - Artist's Showcase Hub</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'artist_profile_details.css' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ artist.name }} - Artist's Showcase Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
 </head>
-<body>
-    <!-- Header Section -->
-    <header class="site-header">
-        <div class="container">
-            <h1 class="site-title">Artist's Showcase Hub</h1>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="{% url 'About' %}">About</a></li>
-                    <li><a href="{% url 'event' %}">Events</a></li>
-                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
-                    <li><a href="{% url 'artist_profile' %}">Artists</a></li>
-                    <li><a href="{% url 'Home' %}">Log-Out</a></li>
+<body class="bg-white text-gray-800">
 
-                    
-                </ul>
-            </nav>
+  <!-- Header -->
+  <header class="flex justify-between items-center px-6 py-4 shadow-md sticky top-0 bg-white z-50">
+    <h1 class="text-2xl font-bold text-blue-700">Artists Showcase Hub</h1>
+    <nav class="space-x-4">
+       <a href="{% url 'profile' %}" class="hover:text-blue-600">Profile</a>
+      <a href="{% url 'event' %}" class="hover:text-blue-600">Events</a>
+      <a href="{% url 'gallery' %}" class="hover:text-blue-600">Gallery</a>
+      <a href="{% url 'artist_profile' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Artists</a>
+      <a href="{% url 'logout' %}" class="hover:text-blue-600">log out</a>
+    </nav>
+  </header>
+
+  <!-- Artist Profile Detail Section -->
+  <section class="px-7 py-13">
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8 flex flex-col md:flex-row gap-10 items-center">
+      <img src="{{ artist.profile_picture.url }}" alt="{{ artist.name }}" class="w-64 h-80 rounded-lg object-cover shadow-md" />
+      <div class="space-y-4">
+        <h2 class="text-3xl font-bold text-blue-700">{{ artist.name }}</h2>
+        <p><span class="font-semibold">Bio:</span> {{ artist.bio }}</p>
+        <p><span class="font-semibold">Email:</span> {{ artist.email }}</p>
+        <p><span class="font-semibold">Phone:</span> {{ artist.phone_number }}</p>
+        <p><span class="font-semibold">Location:</span> {{ artist.location }}</p>
+
+        {% if artist.social_links %}
+        <div>
+          <p class="font-semibold">Social Links:</p>
+          <ul class="list-disc list-inside text-blue-600">
+            {% for key, value in artist.social_links.items %}
+              <li><a href="{{ value }}" target="_blank" class="hover:underline">{{ key }}</a></li>
+            {% endfor %}
+          </ul>
         </div>
-    </header>
+        {% endif %}
+      </div>
+    </div>
+  </section>
 
-    <!-- Artist Profile Details Section -->
-    <main class="content">
-        <div class="container">
-            <h2>{{ artist.name }}</h2>
-            <img src="{{ artist.profile_picture.url }}" alt="{{ artist.name }}" width="250" height="350">
-            <p><strong>Bio:</strong> {{ artist.bio }}</p>
-            <p><strong>Email:</strong> {{ artist.email }}</p>
-            <p><strong>Phone Number:</strong> {{ artist.phone_number }}</p>
-            <p><strong>Location:</strong> {{ artist.location }}</p>
+  <!-- Footer -->
+  <footer class="text-center py-4 bg-gray-100 text-sm text-gray-500">
+    &copy; 2025 Artists Showcase Hub. All rights reserved.
+  </footer>
 
-            {% if artist.social_links %}
-                <p><strong>Social Links:</strong></p>
-                <ul>
-                    {% for key, value in artist.social_links.items %}
-                        <li><a href="{{ value }}">{{ key }}</a></li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-    </main>
-
-    <!-- Footer Section -->
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; Artist's Showcase Hub. All rights reserved.</p>
-        </div>
-    </footer>
 </body>
 </html>

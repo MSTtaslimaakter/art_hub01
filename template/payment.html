@@ -1,106 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Process - Artist's Showcase Hub</title>
-    {% load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment - Artists Showcase Hub</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-    <link rel="stylesheet" href="{% static 'payment.css' %}">
+    body {
+      background-color: #f8fafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .container h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #334155;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .form-group input:focus {
+      border-color: #2563eb;
+      outline: none;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #1d4ed8;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #0846ef;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .footer a {
+      color: #1d62d8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h2>Checkout</h2>
+    <form action="{% url 'payment' %}" method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="name">Name on Card</label>
+    <input type="text" id="name" name="name"  required />
+  </div>
 
-    <!-- Header Section -->
-    <header class="site-header">
-        <div class="container">
-            <h1 class="site-title">Artist's Showcase Hub</h1>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="{% url 'Home' %}">Home</a></li>
-                    <li><a href="{% url 'About' %}">About Us</a></li>
-                    <li><a href="{% url 'event' %}">Events</a></li>
-                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <div class="form-group">
+    <label for="card">Card Number</label>
+    <input type="text" id="card" name="card_number"  required />
+  </div>
 
-    <!-- Main Content Section -->
-    <main class="content">
+  <div class="form-group">
+    <label for="expiry">Expiry</label>
+    <input type="text" id="expiry" name="expiry"  required />
+  </div>
+  <div class="form-group">
+    <label for="cvv">CVV</label>
+    <input type="text" id="cvv" name="cvv"  required />
+  </div>
 
-        <!-- Home Section -->
-        <section class="hero">
-            <div class="hero-heading-container">
-                <div class="hero-heading">
-                    <h2>Welcome to the Artist Showcase Hub</h2>
-                </div>
-                <div class="hero-subheading">
-                    <h3>An Open Art Gallery to Connect Local Artists</h3>
-                </div>
-            </div>
-            <div class="hero-content">
-                <p>
-                    The Artist Showcase Hub is a vibrant community where local artists can connect with art lovers,
-                    showcase their talent, and sell their creations. Our platform offers a wide variety of artworks
-                    that celebrate the creativity and skill of local talent. Whether you're an artist or an art enthusiast,
-                    this is the place for you!
-                </p>
-            
-            </div>
-        </section>
-        <div>
-            <button><a href="{% url 'artist_profile' %}"><strong>Artists</strong></a></button>
-        </div>
+  <div class="checkbox-group">
+    <input type="checkbox" id="remember" name="remember" />
+    <label for="remember">Remember me </label>
+  </div>
 
-        <!-- Payment Section -->
-        <div class="payment-details-container">
-            <h2>Payment Details</h2>
-            <form action="{% url 'purchase' %}" method="POST" class="payment-form">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Card Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Enter card name" required>
-                </div>
-                <div class="form-group">
-                    <label for="my">Expiration Date (MM/YY):</label>
-                    <input type="number" id="my" name="my" placeholder="MM/YY" required>
-                </div>
-                <div class="form-group">
-                    <label for="cvc">CVC/CVV:</label>
-                    <input type="number" id="cvc" name="cvc" placeholder="Enter CVC" required>
-                </div>
-                <div class="form-group">
-                    <label for="hname">Card holder's Name:</label>
-                    <input type="text" id="hname" name="hname" placeholder="Enter card holder's name" required>
-                </div>
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="ps" name="ps" class="checkbox-input" aria-label="Save card and remember me">
-                    <label for="ps" class="checkbox-label">Save Card & Remember Me</label>
-                </div>
-                
-                <div class="form-group">
-                    <!-- 'Pay Now' button with submission action -->
-                    <button type="submit" class="pay-now-button"><a href="{% url 'payment' %}"><strong>Pay Now</strong></a></button>
-                </div>
-                <div class="form-group">
-                    <input type="button" value="Back" class="btn-secondary" onclick="window.history.back();">
-                </div>
-            </form>
-        </div>
-    </main>
+  <button type="submit" class="submit-btn">Pay Now</button>
+</form>
 
-    <!-- Footer Section -->
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; Artist's Showcase Hub. All rights reserved.</p>
-            <p>Follow us on social media!</p>
-            <div class="social-links">
-                <a href="https://www.facebook.com/">Facebook</a> | 
-                <a href="https://twitter.com/?lang=en">Twitter</a> | 
-                <a href="https://www.instagram.com/">Instagram</a>
-            </div>
-        </div>
-    </footer>
 
+    <div class="footer">
+      Want to review your order? <a href="{% url 'gallery' %}">Go Back</a>
+    </div>
+  </div>
 </body>
 </html>

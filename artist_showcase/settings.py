@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hub.apps.HubConfig',
     'accounts.apps.AccountsConfig',
-    
+    'chatbot',
+     'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -114,6 +115,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+LOGIN_URL = 'log_in'
+LOGIN_REDIRECT_URL = '/profile/'
 
 
 # Static files (CSS, JavaScript, Images)

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nagad Payment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-yellow-50 text-gray-800 font-sans">
+  <div class="max-w-xl mx-auto mt-12 bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold text-yellow-600 mb-4">Nagad Payment</h1>
+    <p><strong>Name:</strong> {{ data.name }}</p>
+    <p><strong>Tickets:</strong> {{ data.tickets }}</p>
+<p class="mt-4">Please send <strong>৳{{ amount }}</strong> to Nagad number: <strong>01XXXXXXXXX</strong></p>
+    <p class="mt-2">After payment, bring your transaction ID to the event gate.</p>
+    <a href="{% url 'event' %}" class="mt-6 inline-block text-yellow-700 hover:underline">← Back to Events</a>
+  </div>
+</body>
+</html>

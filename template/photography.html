@@ -1,79 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artist's Showcase Hub - Photography</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'gallery.css' %}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photography | Artists Showcase Hub</title>
+  {% load static %}
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
 </head>
-<body>
-    <!-- Header Section -->
-    <header class="site-header">
-        <div class="container">
-            <h1 class="site-title">Artist's Showcase Hub</h1>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="{% url 'Home' %}">Home</a></li>
-                    <li><a href="{% url 'event' %}">Events</a></li>
-                    <li><a href="{% url 'artist_profile' %}">Artists</a></li>
-                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
-                </ul>
-            </nav>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center px-6 py-4 shadow-md sticky top-0 bg-white z-50">
+    <h1 class="text-2xl font-bold text-blue-700">Artists Showcase Hub</h1>
+    <nav class="space-x-4">
+     <a href="{% url 'profile' %}" class="hover:text-blue-600">Profile</a>
+      <a href="{% url 'event' %}" class="hover:text-blue-600">Events</a>
+      <a href="{% url 'gallery' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Gallery</a>
+      <a href="{% url 'artist_profile' %}" class="hover:text-blue-600">Artists</a>
+      <a href="{% url 'logout' %}" class="hover:text-blue-600">log out</a>
+    </nav>
+  </header>
+
+  <!-- Page Title -->
+  <section class="text-center py-10 px-4">
+    <h2 class="text-4xl font-bold text-blue-700">Photography</h2>
+    <p class="text-gray-600 mt-2">Explore beautiful photography captured by talented artists around the world.</p>
+  </section>
+
+  <!-- Photography Grid -->
+  <section class="grid gap-8 px-6 pb-16 md:grid-cols-2 lg:grid-cols-3">
+    {% for photo in photos %}
+    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+      <img 
+        src="{{ photo.image.url }}" 
+        alt="{{ photo.title }}" 
+        class="w-full h-80 object-cover cursor-pointer" 
+        onclick="openModal('{{ photo.image.url }}', '{{ photo.title }}', '{{ photo.description|escapejs }}', '{{ photo.artist }}')"
+      />
+      <div class="p-4">
+        <h4 class="text-xl font-semibold mb-1">{{ photo.title }}</h4>
+        <p class="text-sm text-gray-500 mb-3">By: {{ photo.artist }}</p>
+
+        <!-- Comment Form -->
+          {% csrf_token %}
+          <textarea name="comment" rows="2" placeholder="Write your comment..." class="w-full p-2 border border-gray-300 rounded-md text-sm"></textarea>
+          <button type="submit" class="mt-2 bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 text-sm">Submit</button>
+        </form>
+
         </div>
-    </header>
+      
 
-    <!-- Category Section -->
-    <main class="content">
-        <div class="container">
-            <h2>Photography</h2>
-            <p>Explore beautiful Photography pieces captured by talented photographers.</p>
-
-
-
-            <!-- Gallery Section -->
-            <div class="image-gallery">
-                {% for photo in photos %}
-                    <div class="image-item">
-                        <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="painting-image">
-                        <h4>{{ photo.title }}</h4>
-                        <p>By: {{ photo.artist }}</p>
-            
-                        <!-- Comment Box -->
-                        <div class="comment-section">
-                            <h5>Leave a Comment</h5>
-                            <form method="POST" action="{% url 'add_comment' photo.id %}">
-                                {% csrf_token %}
-                                <textarea name="comment" rows="4" placeholder="Write your comment here..."></textarea>
-                                <button type="submit" class="btn btn-primary" style="background-color: #ffa947; color: white;">
-                                    Submit Comment
-                                </button>
-                            </form>
-                        </div>
-
-                        <!-- Actions Section -->
-                        <div class="actions">
-
-                            <!-- Purchase Button -->
-                            <a href="{% url 'payment' %}" class="btn action-btn" style="background-color: #f7a765; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">
-                                <i class="fas fa-shopping-cart"></i> Purchase
-                            </a>
-                        </div>
-                    </div>
-                {% empty %}
-                    <p>No photography available at the moment.</p>
-                {% endfor %}
-            </div>
+        <!-- Purchase Button -->
+        <div class="text-center mt-4">
+          <a href="{% url 'payment' %}" class="inline-flex items-center gap-2 bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800">
+            <i class="fas fa-shopping-cart"></i> Purchase
+          </a>
         </div>
-    </main>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-center col-span-full text-gray-500">No photography available at the moment.</p>
+    {% endfor %}
+  </section>
 
-    <!-- Footer Section -->
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; Artist's Showcase Hub. All rights reserved.</p>
-            <p>Follow us on social media for updates!</p>
-        </div>
-    </footer>
+  <!-- Modal -->
+  <div id="photoModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
+    <div class="bg-white rounded-xl max-w-3xl w-full p-6 relative">
+      <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-600 hover:text-red-600 text-xl">&times;</button>
+      <img id="modalImage" src="" alt="Photo" class="w-full h-96 object-cover rounded mb-4">
+      <h3 id="modalTitle" class="text-2xl font-bold text-blue-700"></h3>
+      <p id="modalArtist" class="text-sm text-gray-500 mb-2"></p>
+      <p id="modalDescription" class="text-gray-700"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 text-center py-4 text-sm text-gray-600">
+    &copy; 2025 Artists Showcase Hub. All rights reserved. <br />
+    Follow us on social media for updates!
+  </footer>
+
+  <!-- Modal Script -->
+  <script>
+    function openModal(image, title, description, artist) {
+      document.getElementById('modalImage').src = image;
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDescription').innerText = description;
+      document.getElementById('modalArtist').innerText = 'By: ' + artist;
+      document.getElementById('photoModal').classList.remove('hidden');
+      document.getElementById('photoModal').classList.add('flex');
+    }
+
+    function closeModal() {
+      document.getElementById('photoModal').classList.add('hidden');
+      document.getElementById('photoModal').classList.remove('flex');
+    }
+  </script>
+
 </body>
 </html>
