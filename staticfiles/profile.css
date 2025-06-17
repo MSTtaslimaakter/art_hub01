@@ -1,0 +1,25 @@
+/* Profile Specific Styles */
+.profile-section {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic {
+  flex: 0 0 200px;
+}
+
+.profile-pic img {
+  width: 100%;
+  border-radius: 50;}

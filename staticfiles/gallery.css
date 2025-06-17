@@ -1,0 +1,178 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* Header Styles */
+.site-header {
+  background-color: #e4935d;
+  color: white;
+  padding: 20px 0;
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.main-nav ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.main-nav li {
+  margin-left: 20px;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.main-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Gallery Section */
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px; /* Increased for better spacing between items */
+  justify-content: center; /* Center the gallery */
+}
+
+.image-item:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+}
+
+
+.image-item {
+  background-color: #ffffff; /* White container */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Stronger shadow for white contrast */
+  text-align: center;
+  width: 320px;
+  border: 1px solid #ddd; /* Subtle border */
+  transition: transform 0.3s ease;
+}
+
+
+.painting-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  border: 1px solid #ccc; /* Optional: adds edge to image itself */
+}
+
+
+
+h4 {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+p {
+  color: #141414;
+  font-size: 14px;
+}
+
+/* Comment Box */
+.comment-section {
+  margin-top: 20px;
+}
+
+.comment-section h5 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.comment-section textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #181717;
+  margin-bottom: 10px;
+  resize: none;
+}
+
+.comment-section button {
+  padding: 10px 20px;
+  background-color: #fcb463;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-section button:hover {
+  background-color: #f5bf6f;
+}
+
+/* Footer Section */
+.site-footer {
+  background-color: #e4935d;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.site-footer .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-footer .social-links {
+  margin-top: 10px;
+}
+
+.site-footer .social-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.site-footer .social-links a:hover {
+  text-decoration: underline;
+}
+
+.btn-primary {
+  background-color: #f8b153; /* Green color, change to your preferred color */
+  color: white;              /* Text color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #f7a75c; /* Slightly darker green on hover */
+}
+

@@ -1,0 +1,138 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #ff975b;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.site-header {
+  background-color: #fdad61;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.site-header h1 {
+  text-align: center;
+  font-size: 2.5em;
+}
+
+.main-nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.main-nav li {
+  margin: 0 15px;
+}
+
+.main-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+.main-nav a:hover {
+  color: #f2b400;
+}
+
+/* Artist Profile Section */
+.artist-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.artist-profile img {
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  object-fit: cover;
+}
+
+.artist-profile h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: #eb8c8c;
+}
+
+.artist-profile p {
+  font-size: 1.2em;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+  color: #e9ad5f;
+}
+
+.artist-profile .contact-info {
+  font-size: 1.1em;
+  margin-top: 30px;
+  color: #eeda83;
+}
+
+.artist-profile .contact-info a {
+  color: #f2b400;
+  text-decoration: none;
+}
+
+.artist-profile .contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Social Links Section */
+.social-links {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.social-links a {
+  margin: 0 15px;
+  font-size: 1.5em;
+  color: #fcaf68;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: #f2b400;
+}
+
+/* Footer Section */
+.site-footer {
+  background-color: #fc761d;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.site-footer p {
+  margin: 5px 0;
+}
+
+.site-footer .social-links {
+  margin-top: 10px;
+}
+
+.site-footer .social-links a {
+  color: #fff;
+  font-size: 1.2em;
+  margin: 0 10px;
+}
+
+.site-footer .social-links a:hover {
+  color: #f2b400;
+}
